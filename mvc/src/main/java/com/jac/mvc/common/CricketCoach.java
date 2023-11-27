@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-@Qualifier("cricket")
+//@Qualifier("cricket")
 public class CricketCoach implements Coach {
     @Override
     public String getDailyWorkout() {

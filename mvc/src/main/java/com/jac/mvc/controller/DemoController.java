@@ -3,12 +3,15 @@ package com.jac.mvc.controller;
 import com.jac.mvc.common.Coach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import test.AloneBean;
 
 import java.util.List;
 
 @RestController
+@Lazy
 //@RequiredArgsConstructor
 public class DemoController {
     private final Coach coach; // access via qualifier
@@ -16,14 +19,28 @@ public class DemoController {
     private final List<Coach> coaches; //access to all instances
 
     private final Coach partTimeCoach;
+
+    private AloneBean specialBean;
+
+
     //dependency injection by constructor
     @Autowired
     public DemoController(@Qualifier("soccer") Coach coach,
                           List<Coach> coaches,
-                          @Qualifier("cricket") Coach partTimeCoach){
+                          @Qualifier("cricketCoach") Coach partTimeCoach){
         this.coach = coach;
         this.coaches = coaches;
         this.partTimeCoach = partTimeCoach;
+    }
+
+//    @Autowired //setter based injection
+//    private void mySetterMethod(AloneBean aloneBean){
+//        this.specialBean = aloneBean;
+//    }
+
+    @Autowired //setter based injection
+    private void mySetterMethod(@Qualifier("aloneBean") AloneBean aloneBean){
+        this.specialBean = aloneBean;
     }
 
     @GetMapping("/dailyWorkouts")
