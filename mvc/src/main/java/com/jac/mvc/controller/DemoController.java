@@ -20,6 +20,8 @@ public class DemoController {
 
     private final Coach partTimeCoach;
 
+    private final Coach basketBallCoach;
+
     private AloneBean specialBean;
 
 
@@ -27,10 +29,12 @@ public class DemoController {
     @Autowired
     public DemoController(@Qualifier("soccer") Coach coach,
                           List<Coach> coaches,
-                          @Qualifier("cricketCoach") Coach partTimeCoach){
+                          @Qualifier("cricketCoach") Coach partTimeCoach,
+                          @Qualifier("basketBallCoach1") Coach basketBallCoach){
         this.coach = coach;
         this.coaches = coaches;
         this.partTimeCoach = partTimeCoach;
+        this.basketBallCoach = basketBallCoach;
     }
 
 //    @Autowired //setter based injection
@@ -63,5 +67,10 @@ public class DemoController {
     @GetMapping("/parttime/dailyWorkout")
     public String getPartTimeDailyWorkout(){
         return partTimeCoach.getDailyWorkout();
+    }
+
+    @GetMapping("/basket/dailyWorkout")
+    public String getBasketBallWorkout(){
+        return basketBallCoach.getDailyWorkout();
     }
 }
