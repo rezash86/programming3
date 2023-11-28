@@ -43,5 +43,8 @@ public class MvcApplication {
 		topStudents.get(0).setEmail("OOOO.dddd@gmail.com");
 		repository.updateStudent(topStudents.get(0));
 		System.out.println("updated Margot is here -> " + topStudents.get(0));
+
+		System.out.println("Delete student ");
+		repository.deleteStudentById(13L);
 	}
 }

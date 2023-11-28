@@ -63,4 +63,23 @@ public class StudentRepositoryImpl implements StudentRepository{
         entityManager.merge(student);
 
     }
+
+    @Override
+    public void deleteStudent(Student student) {
+
+        //if you don't have the exact student to be deleted
+        //first you need to fetch it !!!
+
+        //otherwise if you are sending the same exact object that resides in db
+        //then just pass the object to remove method
+        entityManager.remove(student);
+    }
+
+    @Override
+    public void deleteStudentById(Long id) {
+        Student foundStd = entityManager.find(Student.class, id);
+        if(foundStd != null){
+            entityManager.remove(foundStd);
+        }
+    }
 }
