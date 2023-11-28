@@ -19,10 +19,10 @@ public class MvcApplication {
 		SpringApplication.run(MvcApplication.class, args);
 	}
 
-	@Bean
-	public CommandLineRunner commandLineRunner(@Qualifier("studentRepositoryImpl") StudentRepository repository){
-		return runner -> createStudent(repository);
-	}
+//	@Bean
+//	public CommandLineRunner commandLineRunner(@Qualifier("studentRepositoryImpl") StudentRepository repository){
+//		return runner -> createStudent(repository);
+//	}
 
 	public void createStudent(StudentRepository repository){
 		Student student = Student.builder().firstName("Chris").lastName("Redfield").email("ch.r@Gmail.com").build();
