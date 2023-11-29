@@ -1,7 +1,6 @@
 package com.jac.mvc.springmvcproject.service;
 
-import com.jac.mvc.springmvcproject.entity.Employee;
-import org.springframework.stereotype.Service;
+import com.jac.mvc.springmvcproject.domain.Employee;
 
 import java.util.List;
 
