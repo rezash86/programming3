@@ -2,7 +2,6 @@ package com.jac.mvc.relationships.one_to_one;
 
 import com.jac.mvc.relationships.one_to_one.entity.User;
 import com.jac.mvc.relationships.one_to_one.entity.UserProfile;
-import com.jac.mvc.relationships.one_to_one.entity.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -12,18 +11,18 @@ import java.util.List;
 import java.util.Optional;
 
 @SpringBootApplication
-public class DemoApplication implements CommandLineRunner {
+public class DemoApplication1 implements CommandLineRunner {
 
     private final UserRepository userRepository;
 
     @Autowired
-    public DemoApplication(UserRepository userRepository) {
+    public DemoApplication1(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
+        SpringApplication.run(DemoApplication1.class, args);
     }
 
 
@@ -37,6 +36,8 @@ public class DemoApplication implements CommandLineRunner {
                 .lastName("PEPPPA")
                 .email("peppa.pig@gmail.com")
                 .passWord("123445")
+//                .age(-2)// gives constraint error
+                .age(12)
                 .userProfile(userProfile)
                 .build();
 

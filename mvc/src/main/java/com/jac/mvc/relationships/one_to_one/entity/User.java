@@ -2,6 +2,9 @@ package com.jac.mvc.relationships.one_to_one.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 @Entity
@@ -27,7 +30,11 @@ public class User {
     private String passWord;
 
     @Column(name = "email", unique = true)
+    @Email
     private String email;
+
+    @Positive
+    private int age;
 
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "userprofile_id", referencedColumnName = "id")
