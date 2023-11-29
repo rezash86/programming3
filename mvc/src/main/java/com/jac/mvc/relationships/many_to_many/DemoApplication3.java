@@ -12,10 +12,10 @@ import java.util.List;
 @SpringBootApplication
 public class DemoApplication3 implements CommandLineRunner {
 
-    private final PostRepository postRepository;
+    private final PostTagRepository postRepository;
 
     @Autowired
-    public DemoApplication3(PostRepository postRepository) {
+    public DemoApplication3(PostTagRepository postRepository) {
         this.postRepository = postRepository;
     }
 
