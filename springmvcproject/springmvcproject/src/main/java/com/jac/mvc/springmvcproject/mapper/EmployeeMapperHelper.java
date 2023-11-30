@@ -45,4 +45,8 @@ public class EmployeeMapperHelper {
     public Employee convertEmployeeDTOToEmployee(EmployeeDTO employee){
         return mapper.convertValue(employee, Employee.class);
     }
+
+    public Employee convertEmployeeEntityToEmployee(EmployeeEntity employeeEntity){
+        return mapper.convertValue(employeeEntity, Employee.class);
+    }
 }

@@ -2,6 +2,7 @@ package com.jac.mvc.springmvcproject.controller;
 
 import com.jac.mvc.springmvcproject.domain.Employee;
 import com.jac.mvc.springmvcproject.dto.EmployeeDTO;
+import com.jac.mvc.springmvcproject.exception.EmployeeNotFoundException;
 import com.jac.mvc.springmvcproject.mapper.EmployeeMapperHelper;
 import com.jac.mvc.springmvcproject.service.EmployeeService;
 import jakarta.validation.Valid;
@@ -9,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -38,7 +36,6 @@ public class EmployeeController {
         theEmployees.addAttribute("employees", employeeDTOS);
         //return the thymeleaf
         return "list-employees";
-
     }
 
     @GetMapping("/showFormForAdd")
@@ -46,6 +43,23 @@ public class EmployeeController {
 
         theModel.addAttribute("employee", new EmployeeDTO());
         return "employee-form";
+    }
+
+    @GetMapping("/showFormForUpdate")
+    public String showFormForUpdate(@RequestParam("empId") Long theId, Model theModel){
+        //fetch the employee by id
+        try{
+            Employee employeeById = employeeService.findEmployeeById(theId);
+            theModel.addAttribute("employee", employeeById);
+             return "employee-form";
+        }
+        catch (EmployeeNotFoundException exception){
+            theModel.addAttribute("employee", null);
+            theModel.addAttribute("exceptionMessage", exception.getMessage());
+
+            return "employee-form";
+        }
+
     }
 
     @PostMapping("/upsert")
@@ -58,6 +72,12 @@ public class EmployeeController {
         employeeService.saveEmployee(employee);
 
         //after saving the employee, we need to return to the main page and we redirect to the main page
+        return "redirect:/employee/list";
+    }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("empId") Long theId){
+        employeeService.deleteEmployeeById(theId);
         return "redirect:/employee/list";
     }
 }
