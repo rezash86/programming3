@@ -1,0 +1,28 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>home page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/demo.css}" />
+
+</head>
+
+<body>
+    <form action="#" th:action="@{/authenticateTheUser}" method="post">
+         <!-- we will add input for username and password         -->
+        <p>
+            Username : <input type="text" name="username" />
+        </p>
+        <p>
+            Password : <input type="password" name="password" />
+        </p>
+
+        <input type="submit" value="login"/>
+    </form>
+
+</body>
+
+</html>
